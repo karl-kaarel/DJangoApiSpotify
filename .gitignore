@@ -1,5 +1,5 @@
 /site/logs/access.log
 /site/logs/error.log
 
-/src/DjangoAPI
+/src/DjangoAPI/settings.py
 /venv
