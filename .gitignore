@@ -1,0 +1,4 @@
+/site/logs/access.log
+/site/logs/error.log
+
+/src/DjangoAPI
