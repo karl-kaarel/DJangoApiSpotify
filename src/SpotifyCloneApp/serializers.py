@@ -4,4 +4,4 @@ from SpotifyCloneApp.models import Playlists
 class PlaylistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Playlists
-        fields = ('PlaylistId', 'PlaylistName')
+        fields = ('id', 'name')

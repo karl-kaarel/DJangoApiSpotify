@@ -9,12 +9,12 @@ from SpotifyCloneApp.serializers import PlaylistSerializer
 # Create your views here.
 
 @csrf_exempt
-def SpotifyApi(request, id=0):
+def SpotifyApi(request, PlaylistId=0):
     
     if request.method == 'GET':
         playlists = Playlists.objects.all()
         playlists_serializer=PlaylistSerializer(playlists, many=True)
-        return JsonResponse(playlists_serializer.data, safe=False)
+        return JsonResponse({'items': playlists_serializer.data}, safe=False)
 
     elif request.method == 'POST':
         playlist_data = JSONParser().parse(request)
@@ -26,7 +26,7 @@ def SpotifyApi(request, id=0):
 
     elif request.method == 'PUT':
         playlist_data = JSONParser().parse(request)
-        playlist = Playlists.objects.get(PlaylistId=playlist_data['PlaylistId'])
+        playlist = Playlists.objects.get(id=playlist_data['id'])
         playlists_serializer = PlaylistSerializer(playlist, data=playlist_data)
         if playlists_serializer.is_valid():
             playlists_serializer.save()
@@ -34,6 +34,6 @@ def SpotifyApi(request, id=0):
         return JsonResponse("Failed to update")
 
     elif request.method == 'DELETE':
-        playlist = Playlists.objects.get(PlaylistId=id)
+        playlist = Playlists.objects.get(id=PlaylistId)
         playlist.delete()
         return JsonResponse("Deleted successfuly", safe=False)
