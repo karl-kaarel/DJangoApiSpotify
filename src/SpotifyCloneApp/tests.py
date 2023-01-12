@@ -4,11 +4,6 @@ from SpotifyCloneApp.models import Playlists
 from SpotifyCloneApp.views import SpotifyApi
 import json
 
-# class ApiUrlsTests(SimpleTestCase):
-#     def tests_GET(self):
-#         url = reverse('playlists')
-#         print(url)
-
 # Create your tests here.
 
 class TestViews(TestCase):
@@ -28,10 +23,6 @@ class TestViews(TestCase):
         data_put = {
             "id": 1,
             "name":"Funk"
-        }
-
-        data_delete = {
-            "id": 1,
         }
 
         #ToBeSent
