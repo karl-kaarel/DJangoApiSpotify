@@ -3,14 +3,19 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django_ratelimit.decorators import ratelimit
+# from django_ratelimit.exceptions import Ratelimited
 
 from SpotifyCloneApp.models import Playlists
 from SpotifyCloneApp.serializers import PlaylistSerializer
 
 # Create your views here.
 
+def ratelimited_error(request, exception):
+    # or other types:
+    return JsonResponse({'error': 'Sorry, too many requests'}, status=429)
+
 @csrf_exempt
-@ratelimit(key='user', rate='3/m', block=True)
+@ratelimit(key='user', rate='2/m')
 def SpotifyApi(request, PlaylistId=0):
     
     if request.method == 'GET':
